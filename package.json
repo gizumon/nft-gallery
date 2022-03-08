@@ -26,7 +26,7 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
-    "lint": "echo $RESOURCE_DIR",
+    "lint": "eslint --ext .js,.ts .",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "deploy": "yarn build --prod && firebase deploy",
