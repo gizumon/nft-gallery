@@ -3,9 +3,19 @@ import * as THREE from 'three'
 import React, { useEffect } from 'react'
 import { Canvas } from '@react-three/fiber'
 import { useSprings, animated, WithAnimated } from '@react-spring/three'
+import { COLORS } from '../utils/constants'
 
 const number = 35;
-const colors = ['#A2CCB6', '#FCEEB5', '#EE786E', '#e0feff', 'lightpink', 'lightblue']
+const colors = [
+  // COLORS.yellow_sunshine,
+  // COLORS.blue_steel,
+  COLORS.shokot_blue,
+  COLORS.charcoal,
+  COLORS.cloudy,
+  COLORS.sand_dollar,
+  COLORS.lemon,
+  // COLORS.salmon,
+]
 const random = (i) => {
   const r = Math.random()
   return {
