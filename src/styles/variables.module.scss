@@ -1,0 +1,44 @@
+$crl-lemon: #C1BC6E;
+$crl-light_yellow: #F5F448;
+$crl-yellow_sunshine: #F9BA32;
+$crl-blue_steel: #426E86;
+$crl-bone: #F8F1E5;
+$crl-coal: #2F3131;
+$crl-stone_ground: #4B4345;
+$crl-lapis: #556DAC;
+$crl-salmon: #F79B77;
+$crl-pepper_corn: #755248;
+$crl-wood_veneer: #756867;
+$crl-sand_dollar: #D5D6D2;
+$crl-charcoal: #353C3F;
+$crl-orange: #FF8D3F;
+$crl-duck_blue: #007199;
+$crl-shokot_blue: #0C4154;
+$crl-sick_green: #2e4638;
+$crl-cloudy: #59665B;
+$crl-pistachio: #76973B;
+
+:export {
+  TEST: $crl-lemon;
+  COLORS: {
+    crl_lemon: $crl-lemon;
+    light_yellow: $crl-light_yellow;
+    yellow_sunshine: $crl-yellow_sunshine;
+    blue_steel: $crl-blue_steel;
+    bone: $crl-bone;
+    coal: $crl-coal;
+    stone_ground: $crl-stone_ground;
+    lapis: $crl-lapis;
+    salmon: $crl-salmon;
+    pepper_corn: $crl-pepper_corn;
+    wood_veneer: $crl-wood_veneer;
+    sand_dollar: $crl-sand_dollar;
+    charcoal: $crl-charcoal;
+    orange: $crl-orange;
+    duck_blue: $crl-duck_blue;
+    shokot_blue: $crl-shokot_blue;
+    sick_green: $crl-sick_green;
+    cloudy: $crl-cloudy;
+    pistachio: $crl-pistachio;
+  };
+}

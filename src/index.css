@@ -11,3 +11,44 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* PC */
+#firebaseui-auth-container {
+  margin-top: 50px;
+}
+
+.firebaseui-container.firebaseui-page-provider-sign-in {
+  max-width: 500px;
+}
+
+.firebaseui-idp-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.firebaseui-idp-list .firebaseui-list-item {
+  width: 210px;
+}
+
+/* SP */
+@media (max-width: 767px) {
+  #firebaseui-auth-container {
+    margin-top: 50px;
+  }
+
+  .firebaseui-container.firebaseui-page-provider-sign-in {
+    max-width: inherit;
+  }
+
+  .firebaseui-idp-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .firebaseui-idp-list .firebaseui-list-item {
+    width: 210px;
+  }
+}

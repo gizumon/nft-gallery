@@ -1,0 +1,52 @@
+@import "./variables.module.scss";
+
+#top {
+  width: 100vw;
+  height: 100vh;
+  // background-color: $clr-charcoal;
+  .box {
+    width: 100%;
+    z-index: 1000;
+    position: fixed;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 64px;
+    pointer-events: none;
+  }
+  .titleBlock {
+    display: flex;
+    flex-direction: row;
+    margin-top: 200px;
+    font-weight: 900;
+    align-items: center;
+    justify-content: center;
+    .title {
+      font-size: 72px;
+      padding: 0px 10px;
+      font-family: 'Vidaloka', serif;
+      text-align: center;
+      font-weight: normal;
+      color: #fff;
+      text-shadow: 1px 2px 3px #59665b99; // $crl-cloudy
+    }
+  }
+  .btnBlocks {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
+
+  @media (max-width: 767px) {
+    .titleBlock {
+      .title {
+        font-size: 56px;
+      }
+    }
+    .titleBlock {
+      margin-top: 100px;
+    }
+  }
+}

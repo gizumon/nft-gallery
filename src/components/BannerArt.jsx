@@ -1,9 +1,9 @@
-import ReactDOM from 'react-dom'
-import * as THREE from 'three'
-import React, { useEffect } from 'react'
-import { Canvas } from '@react-three/fiber'
-import { useSprings, animated, WithAnimated } from '@react-spring/three'
-import { COLORS } from '../utils/constants'
+import * as THREE from 'three';
+import React, { useEffect } from 'react';
+import { Canvas } from '@react-three/fiber';
+import { useSprings, animated, WithAnimated } from '@react-spring/three';
+import { useDrag } from '@use-gesture/react';
+import { COLORS } from '../utils/constants';
 
 const number = 35;
 const colors = [
@@ -19,26 +19,43 @@ const colors = [
 const random = (i) => {
   const r = Math.random()
   return {
-    position: [100 - Math.random() * 200, 100 - Math.random() * 200, i * 1.5],
+    position: [250 - Math.random() * 500, 100 - Math.random() * 200, i * 1.5],
     color: colors[Math.round(Math.random() * (colors.length - 1))],
     scale: [1 + r * 14, 1 + r * 14, 1],
-    rotation: [0, 0, THREE.Math.degToRad(Math.round(Math.random()) * 45)]
+    rotation: [0, 0, THREE.Math.degToRad(Math.round(Math.random()) * 45)],
   }
 }
 
 const data = new Array(number).fill(0).map(() => {
   return {
     color: colors[Math.round(Math.random() * (colors.length - 1))],
-    args: [0.1 + Math.random() * 9, 0.1 + Math.random() * 9, 10]
+    args: [0.1 + Math.random() * 9, 0.1 + Math.random() * 9, 10],
   }
 })
 
 function Content() {
+  // const [bindIndex, setBindIndex] = useState<number>(null);
   const [springs, set] = useSprings(number, (i) => ({
     from: random(i),
     ...random(i),
-    config: { mass: 20, tension: 150, friction: 50 }
+    config: { mass: 20, tension: 150, friction: 80 }
   }))
+  // const bind = useDrag(({
+  //   down,
+  //   args: [originalIndex],
+  //   movement: [mx, my],
+  // }) => {
+  //   set.start((i) => {
+  //     if (i !== originalIndex) return;
+  //     console.log('change pos', originalIndex, i, mx, my, down);
+  //     return {
+  //       ...springs[i],
+  //       x: mx,
+  //       y: my,
+  //       immediate: down,
+  //     }
+  //   })
+  // })
   useEffect(() => void setInterval(() => set((i) => ({ ...random(i), delay: i * 40 })), 3000), [])
   return data.map((d, index) => (
     <animated.mesh key={index} {...springs[index]} castShadow receiveShadow>
@@ -67,8 +84,10 @@ function Lights() {
 }
 
 export default function BannerArt() {
+  const panSpeed = 50;
   return (
-    <Canvas linear flat shadows camera={{ position: [0, 0, 100], fov: 100 }}>
+    <Canvas linear flat shadows camera={{ position: [0, 0, 70], fov: 500 }}>
+      {/* <OrbitControls panSpeed={panSpeed} /> */}
       <Lights />
       <Content />
     </Canvas>

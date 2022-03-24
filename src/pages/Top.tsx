@@ -3,13 +3,14 @@ import { Grid, Typography, Box } from '@material-ui/core';
 import Header from '../components/Header';
 import BannerArt from '../components/BannerArt';
 import { OrbitControls } from '@react-three/drei';
-import { COLORS } from '../utils/constants';
+import styles from '../styles/Top.module.scss';
+import FirebaseLoginUI from '../components/FirebaseLoginUI';
 
-const Container = styled.div({
-  width: '100vw',
-  height: '100vh',
-  backgroundColor: COLORS.charcoal,
-});
+const Container: React.FC = ({children}) => (
+  <div id={styles.top}>
+    {children}
+  </div>
+);
 
 // const Container = styled.div({
 //   position: 'relative',
@@ -23,12 +24,30 @@ export default function Top() {
     <Container>
       <Header />
       {/* <OrbitControls panSpeed={panSpeed} /> */}
-      <Box sx={{position: 'fixed', zIndex: 1000}} >
-        <Grid lg={2} sm={2} spacing={10} />
-        <Grid lg={8} sm={8} spacing={10}>
-          {/* <h1>NFT artfolio</h1> */}
+      {/* <Box sx={{position: 'fixed', display: 'flex', flexDirection: 'row', justifyContent: 'center',width: '100vw', zIndex: 1000, marginTop: '64px', pointerEvents: 'none'}} > */}
+      <Box className={styles.box} >
+        <Grid item lg={3} sm={3} />
+        <Grid item lg={6} sm={6}>
+          <div className={styles.titleBlock} >
+            <div className={styles.title}>NFT artfolio</div>
+          </div>
+        </Grid>
+        <Grid item lg={3} sm={3} />
+        <Grid item lg={12} sm={12}>
+          <div className={styles.btnBlocks} >
+            <FirebaseLoginUI />
+          </div>
         </Grid>
       </Box>
+      {/* <Box className={styles.box} >
+        <Grid lg={3} sm={3} spacing={10} />
+        <Grid lg={6} sm={6} spacing={10}>
+          <div className={styles.titleBlock} >
+            <div className={styles.title}>2NFT artfolio</div>
+          </div>
+        </Grid>
+        <Grid lg={3} sm={3} spacing={10} />
+      </Box> */}
       <BannerArt />
     </Container>
   );

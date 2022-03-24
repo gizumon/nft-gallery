@@ -5,15 +5,23 @@
     "noUnusedLocals": true,
     "outDir": "lib",
     "sourceMap": true,
+    "skipLibCheck": true,
     "strict": true,
     "target": "es2017",
-    "jsx": "react-jsx",
+    "jsx": "react",
   },
   "compileOnSave": true,
   "include": [
-    "src"
+    "src",
+    "src/**/*.ts",
+    "src/**/*.tsx"
   ],
+  "exclude": [
+    "node_modules/*",
+  ],
+  "baseUrl": "./",
   "rules": {
     "node/exports-style": ["warn", "module.exports"],
+    "max-len": ["warn", { "code": 120 }]
   },
 }
