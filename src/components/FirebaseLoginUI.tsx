@@ -1,21 +1,20 @@
 // import { getApp, getApps } from 'firebase/app';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
-import * as firebaseui from 'firebaseui';
+import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import { useFirebase } from '../hooks/useFirebase';
-import { useEffect } from 'react';
-import 'firebaseui/dist/firebaseui.css'
+import { useAuth } from '../hooks/useAuth';
 
 interface Props {
 
 }
 
 const FirebaseLoginUI = ({}: Props) => {
-  const { firebase: app } = useFirebase();
-  // if (!app) {
-  //   return (<></>)
-  // }
+  const { firebaseApp: app } = useFirebase();
+  const { user } = useAuth();
+
   const uiConfig = {
+    signInFlow: 'popup',
     signInSuccessUrl: '/',
     signInOptions: [
       // Leave the lines as is for the providers you want to offer your users.
@@ -34,18 +33,29 @@ const FirebaseLoginUI = ({}: Props) => {
     // privacyPolicyUrl: function() {
     //   window.location.assign('<your-privacy-policy-url>');
     // }
+    // callbacks: {
+    //   // Avoid redirects after sign-in.
+    //   signInSuccessWithAuthResult: () => {
+    //     console.log('sign in success');
+    //   },
+    // },
   };
 
-  useEffect(() => {
-    if (!app) return;
-    // Initialize the FirebaseUI Widget using Firebase.
-    const ui = new firebaseui.auth.AuthUI(app?.auth());
-    // The start method will wait until the DOM is loaded.
-    ui.start('#firebaseui-auth-container', uiConfig);
-  }, [ app ])
+  // useEffect(() => {
+  //   if (!app) return;
+  //   // Initialize the FirebaseUI Widget using Firebase.
+  //   const ui = new firebaseui.auth.AuthUI(app?.auth());
+  //   // The start method will wait until the DOM is loaded.
+  //   ui.start('#firebaseui-auth-container', uiConfig);
+  // }, [ app ])
+  if (!app) {
+    return (
+      <></>
+    );
+  }
   return (
-    <div id="firebaseui-auth-container" />
-  )
+    <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={app.auth()}/>
+  );
 }
 
 export default FirebaseLoginUI;

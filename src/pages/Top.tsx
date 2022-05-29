@@ -17,19 +17,17 @@ const Container: React.FC = ({children}) => (
 //   display: flex,
 // });
 
-
 export default function Top() {
   const panSpeed = 50;
   return (
     <Container>
-      <Header />
       {/* <OrbitControls panSpeed={panSpeed} /> */}
       {/* <Box sx={{position: 'fixed', display: 'flex', flexDirection: 'row', justifyContent: 'center',width: '100vw', zIndex: 1000, marginTop: '64px', pointerEvents: 'none'}} > */}
       <Box className={styles.box} >
         <Grid item lg={3} sm={3} />
         <Grid item lg={6} sm={6}>
           <div className={styles.titleBlock} >
-            <div className={styles.title}>NFT artfolio</div>
+            <img className={styles.titleLogo} src={"/assets/img/title-logo.png"}/>
           </div>
         </Grid>
         <Grid item lg={3} sm={3} />
@@ -39,15 +37,6 @@ export default function Top() {
           </div>
         </Grid>
       </Box>
-      {/* <Box className={styles.box} >
-        <Grid lg={3} sm={3} spacing={10} />
-        <Grid lg={6} sm={6} spacing={10}>
-          <div className={styles.titleBlock} >
-            <div className={styles.title}>2NFT artfolio</div>
-          </div>
-        </Grid>
-        <Grid lg={3} sm={3} spacing={10} />
-      </Box> */}
       <BannerArt />
     </Container>
   );

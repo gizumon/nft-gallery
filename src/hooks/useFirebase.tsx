@@ -1,14 +1,6 @@
 import { createContext, useState, useEffect, useContext } from 'react';
 // import { FirebaseApp, getApp, getApps, initializeApp } from 'firebase/app';
-import firebase from "firebase/compat/app"
-import 'firebase/compat/firestore'
-import { getAnalytics } from 'firebase/analytics';
-
-
-interface IUseFirebase {
-  firebase: firebase.app.App | undefined;
-  db: firebase.firestore.Firestore | undefined;
-}
+import firebase from 'firebase/compat/app';
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -20,36 +12,80 @@ const firebaseConfig = {
   measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID,
 };
 
-const FirebaseContext = createContext<firebase.app.App | undefined>(undefined);
+interface IFirebaseContext {
+  firebaseApp: typeof firebase | undefined;
+  getFirebase: () => Promise<typeof firebase | undefined>;
+}
 
-export const FirebaseProvider: React.FC = ({ children }) => {
-  const [app, setApp] = useState<firebase.app.App>();
-  
+const FirebaseContext = createContext<IFirebaseContext>({
+  firebaseApp: undefined,
+  getFirebase: async () => undefined,
+});
+
+const initialize = async () => {
+  if (typeof window === 'undefined') return
+
+  await Promise.all([
+    import('firebase/compat/auth'),
+    import('firebase/compat/firestore'),
+    import('firebase/compat/storage'),
+    import('firebase/compat/analytics'),
+  ]);
+
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+
+  return firebase;
+}
+const promise = initialize();
+
+const FirebaseProvider: React.FC = ({ children }) => {
+  const [firebaseApp, setFirebaseApp] = useState<typeof firebase | undefined>()
+
   useEffect(() => {
-    
-    const firebaseApp = !firebase.apps.length ? firebase.initializeApp(firebaseConfig) : firebase.app()
-    setApp(firebaseApp);
-    
-    (window as any)['TEMP'] = firebaseApp
-
-    if (process.env.NODE_ENV === 'production') {
-      getAnalytics(firebaseApp);
-    }
-    const unsubscribe = () => {};
-    return unsubscribe;
-  }, []);
+    (async () => {
+      setFirebaseApp(await promise)
+    })()
+  }, [])
 
   return (
-    <FirebaseContext.Provider value={app}>
+    <FirebaseContext.Provider value={{ firebaseApp, getFirebase: () => promise }}>
       {children}
     </FirebaseContext.Provider>
-  );
-};
+  )
+}
 
-export const useFirebase = (): IUseFirebase => {
+export default FirebaseContext;
+export { FirebaseProvider }
+
+// const FirebaseContext = createContext<firebase.app.App | undefined>(undefined);
+// 
+// export const FirebaseProvider: React.FC = ({ children }) => {
+//   const [app, setApp] = useState<firebase.app.App>();
+  
+//   useEffect(() => {
+//     console.log('firebase provider run')
+//     const firebaseApp = !firebase.apps.length ? firebase.initializeApp(firebaseConfig) : firebase.app()
+//     setApp(firebaseApp);
+
+//     if (process.env.NODE_ENV === 'production') {
+//       getAnalytics(firebaseApp);
+//     }
+//     const unsubscribe = () => {
+
+//     };
+//     return unsubscribe;
+//   }, []);
+
+//   return (
+//     <FirebaseContext.Provider value={app}>
+//       {children}
+//     </FirebaseContext.Provider>
+//   );
+// };
+
+export const useFirebase = (): IFirebaseContext => {
   const firebaseApp = useContext(FirebaseContext);
-  return {
-    firebase: firebaseApp,
-    db: firebaseApp?.firestore(),
-  }
+
+  return firebaseApp;
 }

@@ -1,10 +1,26 @@
-import { AppBar, Toolbar } from "@material-ui/core";
+import { AppBar, Button, Toolbar, Link } from "@material-ui/core";
+import styles from '../styles/Header.module.scss';
+import { useAuth } from '../hooks/useAuth';
 
 export default function Header() {
+  const { user } = useAuth();
+  const isLogin = !!user?.displayName;
+
+  console.log('user: ', user);
+
   return (
-    <AppBar position="fixed" style={{ backgroundColor: "#2f3131" }}>
+    <AppBar position="fixed" className={styles.bg}>
       <Toolbar>
-        <img src="" alt="NFT-artfolio logo"></img>
+        <div  className={styles.logo}>
+          <img src="/assets/img/header-logo.png" alt="NFT-artfolio logo"></img>
+        </div>
+        <div className={styles.rightBlock}>
+          {
+            isLogin
+              ? `user: ${user.displayName}`
+              : <Link color="inherit" className={styles.link} href="/" >LOGIN</Link>
+          }
+        </div>
       </Toolbar>
     </AppBar>
   );
