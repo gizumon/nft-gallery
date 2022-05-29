@@ -17,7 +17,7 @@ export default function Header() {
         <div className={styles.rightBlock}>
           {
             isLogin
-              ? `user: ${user.displayName}`
+              ? `${user.displayName}`
               : <Link color="inherit" className={styles.link} href="/" >LOGIN</Link>
           }
         </div>

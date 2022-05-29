@@ -6,6 +6,7 @@ type IUser = firebase.User | null;
 
 export interface IUseAuth {
   user: IUser;
+  isLogin: boolean;
 }
 
 const AuthContext = createContext<IUser>(null);
@@ -16,6 +17,7 @@ export const AuthProvider: React.FC = ({ children }) => {
   
   useEffect(() => {
     if (!firebaseApp) {
+      console.log('firebase unmount');
       return;
     }
     firebaseApp.auth().onAuthStateChanged((user) => {
@@ -28,7 +30,7 @@ export const AuthProvider: React.FC = ({ children }) => {
     return () => {
       setUser(null);
     };
-  }, []);
+  }, [firebaseApp]);
 
   return (
     <AuthContext.Provider value={user}>
@@ -42,5 +44,6 @@ export const useAuth = (): IUseAuth => {
   const user = useContext(AuthContext);
   return {
     user,
+    isLogin: !!user?.uid,
   };
 }
