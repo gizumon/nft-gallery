@@ -1,0 +1,62 @@
+@import "./variables.module.scss";
+
+.doorWrapper {
+  position: relative;
+  width: 200px;
+  height: 320px;
+  margin: auto;
+  z-index: 100;
+  margin: 20px auto 0px auto;
+  .label {
+    position: absolute;
+    display: block;
+    top: 25%;
+    left: calc(50% - 26px);;
+    font-family: 'Vidaloka', serif;
+    font-size: 16px;
+    font-weight: 900;
+    z-index: 130;
+    transform: rotateZ(5deg);
+    text-align: center;
+    background-color: #eeeeee;
+    padding: 3px 5px;
+    .hide {
+      opacity: 0;
+      transition: all 0.5s ease-out;
+    }
+  }
+  .door {
+    position: absolute;
+    width: 200px;
+    height: 320px;
+    z-index: 120;
+    top: 50%;
+    left: 50%;
+    transition: all 2s ease-out;
+    transform: translate(-50%, -50%);
+    transform-origin: left;
+    &.open {
+      transition: all 2s ease-out;
+      transform: translate(-45.5%, -50%) rotateY(125deg) skewY(-10deg);
+      // transition-delay: 3s;
+      // transition-property: scale;
+      // scale: 100;
+    }
+  }
+  .doorBack {
+    position: absolute;
+    width: 200px;
+    height: 320px;
+    z-index: 110;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    &.open {
+      // transition-delay: 3s;
+      // transition-property: background-color;
+      // transition-delay: 3s;
+      // transition-property: scale;
+      // scale: 100;
+    }
+  }
+}

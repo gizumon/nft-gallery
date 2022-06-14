@@ -10,11 +10,11 @@ export default function App() {
   return (
     <FirebaseProvider>
       <AuthProvider>
-        <Header />
         <BrowserRouter>
+          <Header />
           <Routes>
             <Route path='/' element={<Top />} />
-            <Route path='/room' >
+            <Route path='/rooms' >
               <Route index element={<RoomList />} />
               <Route path=':roomId' element={<Room />} />
             </Route>

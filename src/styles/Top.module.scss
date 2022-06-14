@@ -8,13 +8,21 @@
     width: 100%;
     z-index: 1000;
     position: fixed;
+    margin-top: 64px;
+  }
+  .btnArea {
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
+    align-items: center;
     justify-content: center;
-    margin-top: 64px;
-    // pointer-events: none;
-  }
+    margin-top: 50px;
+    button {
+      background-color: #59665b55;
+      &:hover {
+        background-color: #59665b99;
+      }
+    }
+   }
   .titleBlock {
     display: flex;
     flex-direction: row;
@@ -35,12 +43,6 @@
       height: 250px;
       opacity: 95%;
     }
-  }
-  .btnBlocks {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
   }
 
   @media (max-width: 767px) {

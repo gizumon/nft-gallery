@@ -1,6 +1,6 @@
+import React from 'react';
 import { BoxProps, useBox } from '@react-three/cannon';
 import { useLoader } from '@react-three/fiber';
-import React from 'react';
 import { GLTFLoader } from 'three-stdlib/loaders/GLTFLoader';
 import { GLTF } from 'three/examples/jsm/loaders/GLTFLoader';
 import useDragConstraint from '../hooks/useDragConstraint';
@@ -25,7 +25,7 @@ type GLTFResult = GLTF & {
 export default function BoardModel({
   model, pos, onClick, ...props
 }: Props & JSX.IntrinsicElements['group']) {
-  const glb = useLoader(GLTFLoader, getModelPath(model)) as any as GLTFResult;
+  const glb = useLoader(GLTFLoader as any, getModelPath(model)) as any as GLTFResult;
   const [board] = useBox(() => ({
     mass: 1,
     args: [2.1, 0.1, 1.3],

@@ -10,17 +10,29 @@ $app-bar-height: 40px;
     .logo {
       flex-grow: 1;
       > img {
+        cursor: pointer;
         max-height: $app-bar-height;
       }
     }
     .rightBlock {
-      justify-content: flex-end;
+      display: flex;
+      flex-direction: row;
+      .label {
+        margin: auto 10px auto auto;
+      }
     }
   }
 }
 .link {
   font-weight: 700;
   font-size: 16px;
+}
+.btnBlocks {
+  width: 260px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 @media (max-width: 767px) {

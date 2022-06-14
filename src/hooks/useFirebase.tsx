@@ -48,8 +48,12 @@ const FirebaseProvider: React.FC = ({ children }) => {
     })()
   }, [])
 
+  const firebaseCtx = {
+    firebaseApp,
+    getFirebase: () => promise,
+  }
   return (
-    <FirebaseContext.Provider value={{ firebaseApp, getFirebase: () => promise }}>
+    <FirebaseContext.Provider value={firebaseCtx}>
       {children}
     </FirebaseContext.Provider>
   )
@@ -57,32 +61,6 @@ const FirebaseProvider: React.FC = ({ children }) => {
 
 export default FirebaseContext;
 export { FirebaseProvider }
-
-// const FirebaseContext = createContext<firebase.app.App | undefined>(undefined);
-// 
-// export const FirebaseProvider: React.FC = ({ children }) => {
-//   const [app, setApp] = useState<firebase.app.App>();
-  
-//   useEffect(() => {
-//     console.log('firebase provider run')
-//     const firebaseApp = !firebase.apps.length ? firebase.initializeApp(firebaseConfig) : firebase.app()
-//     setApp(firebaseApp);
-
-//     if (process.env.NODE_ENV === 'production') {
-//       getAnalytics(firebaseApp);
-//     }
-//     const unsubscribe = () => {
-
-//     };
-//     return unsubscribe;
-//   }, []);
-
-//   return (
-//     <FirebaseContext.Provider value={app}>
-//       {children}
-//     </FirebaseContext.Provider>
-//   );
-// };
 
 export const useFirebase = (): IFirebaseContext => {
   const firebaseApp = useContext(FirebaseContext);

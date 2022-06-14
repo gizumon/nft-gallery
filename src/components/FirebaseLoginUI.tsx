@@ -54,7 +54,7 @@ const FirebaseLoginUI = ({}: Props) => {
     );
   }
   return (
-    <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={app.auth()}/>
+    <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={app.auth()} />
   );
 }
 
