@@ -21,3 +21,10 @@ export interface IMove {
   y: number;
   z: number;
 }
+
+export interface Room {
+  id: string;
+  title: string;
+  description: string;
+  imageUrl: string;
+}

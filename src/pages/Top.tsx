@@ -2,8 +2,8 @@ import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
 import { OrbitControls } from '@react-three/drei';
-import Header from '../components/Header';
-import BannerArt from '../components/BannerArt';
+import Header from '../components/Layouts/Header';
+import BannerArt from '../components/3Ds/BannerArt';
 import FirebaseLoginUI from '../components/FirebaseLoginUI';
 import styles from '../styles/Top.module.scss';
 import { useAuth } from '../hooks/useAuth';
@@ -25,8 +25,10 @@ export default function Top() {
 
   return (
     <Container>
-      {/* <OrbitControls panSpeed={panSpeed} /> */}
-      {/* <Box sx={{position: 'fixed', display: 'flex', flexDirection: 'row', justifyContent: 'center',width: '100vw', zIndex: 1000, marginTop: '64px', pointerEvents: 'none'}} > */}
+      <BannerArt
+        top='64px'
+        opacity='1'
+      />
       <div className={styles.box} >
         <Grid item xs={3} />
         <Grid item xs={6}>
@@ -48,7 +50,6 @@ export default function Top() {
           </Button>
         </Grid>
       </div>
-      <BannerArt />
     </Container>
   );
 }

@@ -12,8 +12,8 @@ import {
   usePointToPointConstraint
 } from '@react-three/cannon'
 import styled from 'styled-components';
-import FloatGroup from '../components/FloatGroup';
-import GroundGroup from '../components/GroundGroup';
+import FloatGroup from '../components/3Ds/FloatGroup';
+import GroundGroup from '../components/3Ds/GroundGroup';
 
 
 const Container = styled.div({

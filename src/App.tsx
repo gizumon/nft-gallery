@@ -4,7 +4,7 @@ import RoomList from './pages/RoomList';
 import Room from './pages/Room';
 import { FirebaseProvider } from './hooks/useFirebase';
 import { AuthProvider } from './hooks/useAuth';
-import Header from './components/Header';
+import Header from './components/Layouts/Header';
 
 export default function App() {
   return (

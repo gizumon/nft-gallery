@@ -3,9 +3,10 @@ import { BoxProps, useBox } from '@react-three/cannon';
 import { useLoader } from '@react-three/fiber';
 import { GLTFLoader } from 'three-stdlib/loaders/GLTFLoader';
 import { GLTF } from 'three/examples/jsm/loaders/GLTFLoader';
-import useDragConstraint from '../hooks/useDragConstraint';
-import { IPosition } from '../types/interfaces';
-import { getModelPath, IModelName } from '../utils/constants';
+
+import useDragConstraint from '../../hooks/useDragConstraint';
+import { IPosition } from '../../types/interfaces';
+import { getModelPath, IModelName } from '../../utils/constants';
 
 interface Props {
   model: IModelName;

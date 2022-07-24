@@ -3,7 +3,9 @@ import React, { useEffect } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { useSprings, animated, WithAnimated } from '@react-spring/three';
 import { useDrag } from '@use-gesture/react';
-import { COLORS } from '../utils/constants';
+import { Container } from '@mui/material';
+
+import { COLORS } from '../../utils/constants';
 
 const number = 35;
 const colors = [
@@ -83,13 +85,22 @@ function Lights() {
   )
 }
 
-export default function BannerArt() {
-  const panSpeed = 50;
+export default function BannerArt({ top = '0px', opacity = '100%', zIndex = '-1' }) {
+  // const panSpeed = 50;
   return (
-    <Canvas linear flat shadows camera={{ position: [0, 0, 70], fov: 500 }}>
-      {/* <OrbitControls panSpeed={panSpeed} /> */}
-      <Lights />
-      <Content />
-    </Canvas>
+    <div style={{position: 'fixed', width: '100vw', height: '100vh', top, opacity, zIndex}}>
+      {/* <div style={{position: 'absolute', width: '100%', height: '100%', top}}> */}
+        <Canvas
+          linear
+          flat
+          shadows
+          camera={{ position: [0, 0, 70], fov: 500 }}
+        >
+          {/* <OrbitControls panSpeed={panSpeed} /> */}
+          <Lights />
+          <Content />
+        </Canvas>
+      {/* </div> */}
+    </div>
   )
 }

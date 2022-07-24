@@ -1,7 +1,7 @@
 import { useFrame } from '@react-three/fiber';
 import React, { useState } from 'react';
-import BoardModel from './BoardModel';
 import * as THREE from 'three';
+import BoardModel from './BoardModel';
 import { Plane } from './Plane';
 
 export default function GroundGroup() {

@@ -1,17 +1,16 @@
 import { useState } from 'react';
-import { Link, useNavigate } from "react-router-dom";
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Avatar from '@mui/material/Avatar';
 import Menu from '@mui/material/Menu';
 import PersonIcon from '@mui/icons-material/Person';
-import FirebaseLoginUI from '../components/FirebaseLoginUI';
-import styles from '../styles/Header.module.scss';
-import { IUser, useAuth } from '../hooks/useAuth';
-import { useFirebase } from '../hooks/useFirebase';
-import { ButtonWithBottomText } from './ButtonWithBottomText';
-import { getInitialCharToUpper } from '../utils/strings';
-import { Logo } from './Logo';
+import FirebaseLoginUI from '../FirebaseLoginUI';
+import styles from '../../styles/Header.module.scss';
+import { IUser, useAuth } from '../../hooks/useAuth';
+import { useFirebase } from '../../hooks/useFirebase';
+import { ButtonWithBottomText } from '../ButtonWithBottomText';
+import { getInitialCharToUpper } from '../../utils/strings';
+import { Logo } from '../Logo';
 
 interface ILoginUserProps {
   isInitialized: boolean;
@@ -82,9 +81,7 @@ export default function Header() {
   return (
     <AppBar position="fixed" className={styles.bg}>
       <Toolbar>
-        <div  className={styles.logo}>
-          <Logo />
-        </div>
+        <Logo />
         <div className={styles.rightBlock}>
           {
             isLogin && <div className={styles.label}>{user?.displayName}</div>

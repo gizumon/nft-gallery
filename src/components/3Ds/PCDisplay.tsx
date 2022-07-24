@@ -4,8 +4,8 @@ import { Canvas, useFrame } from '@react-three/fiber'
 import { Html, Environment, useGLTF, ContactShadows, OrbitControls } from '@react-three/drei'
 import { GLTF } from 'three/examples/jsm/loaders/GLTFLoader'
 import { Object3D } from 'three'
-import { getModelPath, IModelName } from '../utils/constants'
-import { IMove } from '../types/interfaces';
+import { getModelPath, IModelName } from '../../utils/constants'
+import { IMove } from '../../types/interfaces';
 
 interface Props {
   child: JSX.Element;
